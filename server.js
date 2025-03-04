@@ -16,7 +16,13 @@ if (!process.env.MONGODB_URI) {
 }
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://updatedlink.vercel.app", "http://localhost:3000"], // Allow Vercel frontend & local development
+    credentials: true, // Required if using cookies or authentication
+  })
+);
+
 app.use(express.json());
 
 // Connect to MongoDB
